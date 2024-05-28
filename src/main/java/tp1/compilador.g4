@@ -114,7 +114,6 @@ expbool : exp comparadores exp
         | expbool operadorLogico expbool
         | operadorBool operadorLogico operadorBool
         | operadorBool
-        |
         ;
         
 comparadores: EQUAL

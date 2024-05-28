@@ -31,6 +31,12 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInstruccion(compiladorParser.InstruccionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link compiladorParser#porcion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPorcion(compiladorParser.PorcionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link compiladorParser#declaracion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -61,12 +67,6 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExp(compiladorParser.ExpContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link compiladorParser#e}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitE(compiladorParser.EContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link compiladorParser#term}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -90,4 +90,34 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitF(compiladorParser.FContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#condicional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicional(compiladorParser.CondicionalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#expbool}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpbool(compiladorParser.ExpboolContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#comparadores}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparadores(compiladorParser.ComparadoresContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#operadorLogico}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperadorLogico(compiladorParser.OperadorLogicoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#operadorBool}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperadorBool(compiladorParser.OperadorBoolContext ctx);
 }
