@@ -68,9 +68,11 @@ instruccion : declaracion PYC
             | bucleWhile
             | bucleFor
             | condicional
+            | prototipoFuncion
+            | declaracionFuncion
             ;
 
-bloque : LLA instrucciones LLC PYC;
+bloque : LLA instrucciones LLC (PYC|);
 
 declaracion : tipoVariable ID
             | tipoVariable ID IGUAL exp
@@ -115,6 +117,16 @@ condicional : IIF PA condicion PC bloque;
 bucleWhile: IWHILE PA condicion PC bloque;
 
 bucleFor: IFOR PA (declaracion PYC condicion PYC incremento) PC bloque;
+
+prototipoFuncion: tipoVariable ID PA argumentos PC PYC;
+
+declaracionFuncion: tipoVariable ID PA argumentos PC bloque;
+
+argumentos: tipoVariable ID argumentos
+          | COMA argumentos
+          | 
+          ;
+
 condicion : exp comparadores exp
         | condicion operadorLogico condicion
         | operadorBool operadorLogico operadorBool

@@ -1,3 +1,20 @@
-for(int x = 0; x>4; x++){
+int x;
+x = 3; 
+
+if(x!=3){
     
-};
+}
+
+int algo(int uno);
+
+int main{
+
+}
+int algo(int uno){
+    int hola = 1;
+}
+
+int algo2(int algo3){
+    int y; 
+    y = 0;
+}
