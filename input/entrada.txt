@@ -1,20 +1,10 @@
-int x;
-x = 3; 
-
-if(x!=3){
-    
-}
-
-int algo(int uno);
-
-int main{
-
-}
-int algo(int uno){
-    int hola = 1;
-}
-
-int algo2(int algo3){
-    int y; 
-    y = 0;
-}
+int cuadrado(int x,int y);
+int main(){
+    int y = 1;
+    int x = 2;
+    cuadrado(x,y);
+};
+int cuadrado(int x,int y){
+    x=x+2;
+    y=y+2;
+};

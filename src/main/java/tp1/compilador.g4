@@ -70,6 +70,7 @@ instruccion : declaracion PYC
             | condicional
             | prototipoFuncion
             | declaracionFuncion
+            | llamadoFuncion
             ;
 
 bloque : LLA instrucciones LLC (PYC|);
@@ -120,7 +121,14 @@ bucleFor: IFOR PA (declaracion PYC condicion PYC incremento) PC bloque;
 
 prototipoFuncion: tipoVariable ID PA argumentos PC PYC;
 
-declaracionFuncion: tipoVariable ID PA argumentos PC bloque;
+declaracionFuncion: declaracion PA argumentos PC bloque;
+
+llamadoFuncion: ID PA datos PC PYC;
+
+datos : ID datos
+      | COMA datos 
+      | 
+      ;
 
 argumentos: tipoVariable ID argumentos
           | COMA argumentos
@@ -152,6 +160,5 @@ operadorBool: TRUE
 incremento: ID SUMA SUMA
           | SUMA SUMA ID
           | ID RESTA RESTA
-          | ID IGUAL ID SUMA factor
-          | ID IGUAL ID RESTA factor
+          | ID IGUAL exp
           ;
