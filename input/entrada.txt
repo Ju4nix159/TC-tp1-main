@@ -1,10 +1,49 @@
-int cuadrado(int x,int y);
-int main(){
-    int y = 1;
-    int x = 2;
-    cuadrado(x,y);
-};
-int cuadrado(int x,int y){
-    x=x+2;
-    y=y+2;
-};
+void funcionEjemplo(int a, float b) {
+    int x = 10;
+    float y = 20.5;
+    bool flag = true;
+
+    if (a > x) {
+        y = y + b;
+    } else if (a == x) {
+        y = y - b;
+    } else {
+        y = y * 2;
+    }
+
+    for (int i = 0; i < a; i++) {
+
+    }
+
+    while (flag) {
+        flag = false;
+    }
+
+    return 0;
+}
+
+int main() {
+    int num1 = 5;
+    float num2 = 3.14;
+    bool estado = false;
+
+    estado = num1 < 10 && num2 > 2.5;
+
+    if (estado) {
+
+    } else {
+
+    }
+
+    for (int j = 0; j < num1; j++) {
+
+    }
+
+    while (num1 > 0) {
+        num1--;
+    }
+
+    funcionEjemplo(num1, num2);
+
+    return 0;
+}

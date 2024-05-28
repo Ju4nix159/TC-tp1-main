@@ -17,6 +17,7 @@ LLC : '}' ;
 PYC : ';' ;
 IGUAL : '=' ;
 COMA : ',';
+PUNTO: '.';
 
 //comparaciones
 EQUAL : '==' ;
@@ -41,6 +42,7 @@ MOD : '%' ;
 INT : 'int' ;
 FLOAT : 'float' ;
 BOOLE : 'bool' ;
+VOID : 'void';
 
 //booleanos
 TRUE : 'true' ;
@@ -53,8 +55,11 @@ IELSE : 'else' ;
 IFOR : 'for' ;
 IRETURN : 'return'; 
 
-NUMERO : DIGITO+ ;
+NUMERO : RESTA DIGITO+ | DIGITO+ ;
 ID : (LETRA | '_')(LETRA | DIGITO | '_')* ;
+
+FLOTANTE : DIGITO+ PUNTO DIGITO+;
+
 
 
 programa : instrucciones EOF ;
@@ -71,6 +76,9 @@ instruccion : declaracion PYC
             | prototipoFuncion
             | declaracionFuncion
             | llamadoFuncion
+            | retorno
+            | condicion
+            | incremento
             ;
 
 bloque : LLA instrucciones LLC (PYC|);
@@ -83,9 +91,15 @@ declaracion : tipoVariable ID
 tipoVariable  : INT 
               | FLOAT
               | BOOLE
+              | VOID
               ;
 
-asignacion : ID IGUAL exp PYC ;
+asignacion  : ID IGUAL exp PYC 
+            | ID IGUAL condicion PYC
+            ;
+
+retorno: IRETURN factor PYC;
+
 
 expresiones : exp PYC expresiones
             | EOF
@@ -103,6 +117,7 @@ t : SUMA  term t
 
 factor: NUMERO
       | ID
+      | FLOTANTE
       | operadorBool
       | PA exp PC
       ;
@@ -113,7 +128,14 @@ f : MULT factor f
   |
   ;
 
-condicional : IIF PA condicion PC bloque;
+condicional : IIF PA condicion PC bloque (condicionalElse|);
+
+condicionalElse : IELSE bloque
+                | IELSE condicional
+                ;
+
+
+
 
 bucleWhile: IWHILE PA condicion PC bloque;
 
@@ -139,6 +161,7 @@ condicion : exp comparadores exp
         | condicion operadorLogico condicion
         | operadorBool operadorLogico operadorBool
         | operadorBool
+        | ID
         ;
         
 comparadores: EQUAL
@@ -159,6 +182,6 @@ operadorBool: TRUE
 
 incremento: ID SUMA SUMA
           | SUMA SUMA ID
-          | ID RESTA RESTA
+          | ID RESTA RESTA (PYC|)
           | ID IGUAL exp
           ;

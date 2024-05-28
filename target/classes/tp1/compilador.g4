@@ -17,6 +17,7 @@ LLC : '}' ;
 PYC : ';' ;
 IGUAL : '=' ;
 COMA : ',';
+PUNTO: '.';
 
 //comparaciones
 EQUAL : '==' ;
@@ -41,6 +42,7 @@ MOD : '%' ;
 INT : 'int' ;
 FLOAT : 'float' ;
 BOOLE : 'bool' ;
+VOID : 'void';
 
 //booleanos
 TRUE : 'true' ;
@@ -53,8 +55,11 @@ IELSE : 'else' ;
 IFOR : 'for' ;
 IRETURN : 'return'; 
 
-NUMERO : DIGITO+ ;
+NUMERO : RESTA DIGITO+ | DIGITO+ ;
 ID : (LETRA | '_')(LETRA | DIGITO | '_')* ;
+
+FLOTANTE : DIGITO+ PUNTO DIGITO+;
+
 
 
 programa : instrucciones EOF ;
@@ -63,24 +68,38 @@ instrucciones : instruccion instrucciones
               |
               ;
 
-instruccion : declaracion
+instruccion : declaracion PYC
             | asignacion
+            | bucleWhile
+            | bucleFor
             | condicional
+            | prototipoFuncion
+            | declaracionFuncion
+            | llamadoFuncion
+            | retorno
+            | condicion
+            | incremento
             ;
 
-porcion : LLA instrucciones LLC PYC;
+bloque : LLA instrucciones LLC (PYC|);
 
-declaracion : tipoVariable ID PYC 
-            | tipoVariable ID IGUAL exp PYC
+declaracion : tipoVariable ID
+            | tipoVariable ID IGUAL exp
             ;
 
 
 tipoVariable  : INT 
               | FLOAT
               | BOOLE
+              | VOID
               ;
 
-asignacion : ID IGUAL exp PYC ;
+asignacion  : ID IGUAL exp PYC 
+            | ID IGUAL condicion PYC
+            ;
+
+retorno: IRETURN factor PYC;
+
 
 expresiones : exp PYC expresiones
             | EOF
@@ -96,11 +115,12 @@ t : SUMA  term t
   |
   ;
 
-factor : NUMERO
-       | ID
-       | operadorBool
-       | PA exp PC
-       ;
+factor: NUMERO
+      | ID
+      | FLOTANTE
+      | operadorBool
+      | PA exp PC
+      ;
 
 f : MULT factor f
   | DIV  factor f
@@ -108,12 +128,40 @@ f : MULT factor f
   |
   ;
 
-condicional : IIF PA expbool PC porcion;
+condicional : IIF PA condicion PC bloque (condicionalElse|);
 
-expbool : exp comparadores exp
-        | expbool operadorLogico expbool
+condicionalElse : IELSE bloque
+                | IELSE condicional
+                ;
+
+
+
+
+bucleWhile: IWHILE PA condicion PC bloque;
+
+bucleFor: IFOR PA (declaracion PYC condicion PYC incremento) PC bloque;
+
+prototipoFuncion: tipoVariable ID PA argumentos PC PYC;
+
+declaracionFuncion: declaracion PA argumentos PC bloque;
+
+llamadoFuncion: ID PA datos PC PYC;
+
+datos : ID datos
+      | COMA datos 
+      | 
+      ;
+
+argumentos: tipoVariable ID argumentos
+          | COMA argumentos
+          | 
+          ;
+
+condicion : exp comparadores exp
+        | condicion operadorLogico condicion
         | operadorBool operadorLogico operadorBool
         | operadorBool
+        | ID
         ;
         
 comparadores: EQUAL
@@ -131,3 +179,9 @@ operadorLogico: O
 operadorBool: TRUE
             | FALSE
             ;
+
+incremento: ID SUMA SUMA
+          | SUMA SUMA ID
+          | ID RESTA RESTA (PYC|)
+          | ID IGUAL exp
+          ;

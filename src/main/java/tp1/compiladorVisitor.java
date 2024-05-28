@@ -31,11 +31,11 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInstruccion(compiladorParser.InstruccionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link compiladorParser#porcion}.
+	 * Visit a parse tree produced by {@link compiladorParser#bloque}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPorcion(compiladorParser.PorcionContext ctx);
+	T visitBloque(compiladorParser.BloqueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link compiladorParser#declaracion}.
 	 * @param ctx the parse tree
@@ -54,6 +54,12 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAsignacion(compiladorParser.AsignacionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#retorno}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRetorno(compiladorParser.RetornoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link compiladorParser#expresiones}.
 	 * @param ctx the parse tree
@@ -97,11 +103,59 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondicional(compiladorParser.CondicionalContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link compiladorParser#expbool}.
+	 * Visit a parse tree produced by {@link compiladorParser#condicionalElse}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpbool(compiladorParser.ExpboolContext ctx);
+	T visitCondicionalElse(compiladorParser.CondicionalElseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#bucleWhile}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBucleWhile(compiladorParser.BucleWhileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#bucleFor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBucleFor(compiladorParser.BucleForContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#prototipoFuncion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrototipoFuncion(compiladorParser.PrototipoFuncionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#declaracionFuncion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracionFuncion(compiladorParser.DeclaracionFuncionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#llamadoFuncion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLlamadoFuncion(compiladorParser.LlamadoFuncionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#datos}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDatos(compiladorParser.DatosContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#argumentos}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgumentos(compiladorParser.ArgumentosContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#condicion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicion(compiladorParser.CondicionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link compiladorParser#comparadores}.
 	 * @param ctx the parse tree
@@ -120,4 +174,10 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperadorBool(compiladorParser.OperadorBoolContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#incremento}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncremento(compiladorParser.IncrementoContext ctx);
 }
