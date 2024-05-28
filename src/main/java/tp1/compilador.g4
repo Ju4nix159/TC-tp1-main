@@ -63,15 +63,17 @@ instrucciones : instruccion instrucciones
               |
               ;
 
-instruccion : declaracion
+instruccion : declaracion PYC
             | asignacion
+            | bucleWhile
+            | bucleFor
             | condicional
             ;
 
-porcion : LLA instrucciones LLC PYC;
+bloque : LLA instrucciones LLC PYC;
 
-declaracion : tipoVariable ID PYC 
-            | tipoVariable ID IGUAL exp PYC
+declaracion : tipoVariable ID
+            | tipoVariable ID IGUAL exp
             ;
 
 
@@ -96,11 +98,11 @@ t : SUMA  term t
   |
   ;
 
-factor : NUMERO
-       | ID
-       | operadorBool
-       | PA exp PC
-       ;
+factor: NUMERO
+      | ID
+      | operadorBool
+      | PA exp PC
+      ;
 
 f : MULT factor f
   | DIV  factor f
@@ -108,10 +110,13 @@ f : MULT factor f
   |
   ;
 
-condicional : IIF PA expbool PC porcion;
+condicional : IIF PA condicion PC bloque;
 
-expbool : exp comparadores exp
-        | expbool operadorLogico expbool
+bucleWhile: IWHILE PA condicion PC bloque;
+
+bucleFor: IFOR PA (declaracion PYC condicion PYC incremento) PC bloque;
+condicion : exp comparadores exp
+        | condicion operadorLogico condicion
         | operadorBool operadorLogico operadorBool
         | operadorBool
         ;
@@ -131,3 +136,10 @@ operadorLogico: O
 operadorBool: TRUE
             | FALSE
             ;
+
+incremento: ID SUMA SUMA
+          | SUMA SUMA ID
+          | ID RESTA RESTA
+          | ID IGUAL ID SUMA factor
+          | ID IGUAL ID RESTA factor
+          ;
