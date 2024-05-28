@@ -63,10 +63,12 @@ instrucciones : instruccion instrucciones
               |
               ;
 
-instruccion : LLA instrucciones LLC PYC
-            | declaracion
+instruccion : declaracion
             | asignacion
+            | condicional
             ;
+
+porcion : LLA instrucciones LLC PYC;
 
 declaracion : tipoVariable ID PYC 
             | tipoVariable ID IGUAL exp PYC
@@ -84,9 +86,8 @@ expresiones : exp PYC expresiones
             | EOF
             ;
 
-exp : e ;
 
-e : term t ;
+exp : term t ;
 
 term : factor f ;
 
@@ -97,6 +98,7 @@ t : SUMA  term t
 
 factor : NUMERO
        | ID
+       | operadorBool
        | PA exp PC
        ;
 
@@ -105,3 +107,28 @@ f : MULT factor f
   | MOD  factor f
   |
   ;
+
+condicional : IIF PA expbool PC porcion;
+
+expbool : exp comparadores exp
+        | expbool operadorLogico expbool
+        | operadorBool operadorLogico operadorBool
+        | operadorBool
+        |
+        ;
+        
+comparadores: EQUAL
+            | MAY 
+            | MAYEQUAL  
+            | MEN 
+            | MENEQUAL    
+            | NOTEQUAL 
+            ;
+
+operadorLogico: O
+              | Y
+              ;
+
+operadorBool: TRUE
+            | FALSE
+            ;
