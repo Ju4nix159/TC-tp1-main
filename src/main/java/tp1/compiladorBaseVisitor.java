@@ -1,4 +1,4 @@
-// Generated from c:/Users/juani/Desktop/tp1/tp1/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
+// Generated from d:/xampp/htdocs/TC-tp1-main/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
 
 package tp1;
 
@@ -42,6 +42,13 @@ public class compiladorBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitDeclaracion(compiladorParser.DeclaracionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTipoVariable(compiladorParser.TipoVariableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-// Generated from c:/Users/juani/Desktop/tp1/tp1/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
+// Generated from d:/xampp/htdocs/TC-tp1-main/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
 
 package tp1;
 

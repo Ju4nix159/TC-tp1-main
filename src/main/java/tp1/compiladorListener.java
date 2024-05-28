@@ -1,4 +1,4 @@
-// Generated from c:/Users/juani/Desktop/tp1/tp1/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
+// Generated from d:/xampp/htdocs/TC-tp1-main/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
 
 package tp1;
 
@@ -49,6 +49,16 @@ public interface compiladorListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracion(compiladorParser.DeclaracionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladorParser#tipoVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterTipoVariable(compiladorParser.TipoVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladorParser#tipoVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitTipoVariable(compiladorParser.TipoVariableContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladorParser#asignacion}.
 	 * @param ctx the parse tree

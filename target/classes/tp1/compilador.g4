@@ -63,15 +63,20 @@ instrucciones : instruccion instrucciones
               |
               ;
 
-instruccion : LLA instrucciones LLC
-            | declaracion PYC
-            | asignacion PYC
+instruccion : LLA instrucciones LLC PYC
+            | declaracion
+            | asignacion
             ;
 
-declaracion : INT ID PYC
-            | FLOAT ID PYC
-            | BOOLE ID PYC
-            |;
+declaracion : tipoVariable ID PYC 
+            | tipoVariable ID IGUAL exp PYC
+            ;
+
+
+tipoVariable  : INT 
+              | FLOAT
+              | BOOLE
+              ;
 
 asignacion : ID IGUAL exp PYC ;
 

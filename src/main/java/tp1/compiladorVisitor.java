@@ -1,4 +1,4 @@
-// Generated from c:/Users/juani/Desktop/tp1/tp1/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
+// Generated from d:/xampp/htdocs/TC-tp1-main/src/main/java/tp1/compilador.g4 by ANTLR 4.13.1
 
 package tp1;
 
@@ -36,6 +36,12 @@ public interface compiladorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDeclaracion(compiladorParser.DeclaracionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link compiladorParser#tipoVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTipoVariable(compiladorParser.TipoVariableContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link compiladorParser#asignacion}.
 	 * @param ctx the parse tree
