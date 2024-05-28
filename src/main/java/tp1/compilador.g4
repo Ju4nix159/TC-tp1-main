@@ -40,7 +40,7 @@ MOD : '%' ;
 
 //tipo de variables
 INT : 'int' ;
-FLOAT : 'float' ;
+DOUBLE : 'double' ;
 BOOLE : 'bool' ;
 VOID : 'void';
 
@@ -89,7 +89,7 @@ declaracion : tipoVariable ID
 
 
 tipoVariable  : INT 
-              | FLOAT
+              | DOUBLE
               | BOOLE
               | VOID
               ;
@@ -139,7 +139,7 @@ condicionalElse : IELSE bloque
 
 bucleWhile: IWHILE PA condicion PC bloque;
 
-bucleFor: IFOR PA (declaracion PYC condicion PYC incremento) PC bloque;
+bucleFor: IFOR PA (asignacion condicion PYC incremento) PC bloque;
 
 prototipoFuncion: tipoVariable ID PA argumentos PC PYC;
 

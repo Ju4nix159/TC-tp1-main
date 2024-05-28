@@ -1,6 +1,10 @@
-void funcionEjemplo(int a, float b) {
+int x;
+x = 3;
+
+
+void funcionEjemplo(int a, double b) {
     int x = 10;
-    float y = 20.5;
+    double y = 20.5;
     bool flag = true;
 
     if (a > x) {
@@ -10,8 +14,8 @@ void funcionEjemplo(int a, float b) {
     } else {
         y = y * 2;
     }
-
-    for (int i = 0; i < a; i++) {
+    int i;
+    for ( i = 0; i < a; i++) {
 
     }
 
@@ -24,7 +28,7 @@ void funcionEjemplo(int a, float b) {
 
 int main() {
     int num1 = 5;
-    float num2 = 3.14;
+    double num2 = 3.14;
     bool estado = false;
 
     estado = num1 < 10 && num2 > 2.5;
@@ -34,8 +38,8 @@ int main() {
     } else {
 
     }
-
-    for (int j = 0; j < num1; j++) {
+    int j;
+    for ( j = 0; j < num1; j++) {
 
     }
 
